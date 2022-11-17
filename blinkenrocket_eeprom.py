@@ -1,45 +1,3 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i python -p "python3.withPackages(p:[p.pyftdi])"
-
-# editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiNTM5MTc5ZWUtNGFkNi00MDE0LTllMjAtNmFlYTRlYTEwOWZlIiwibmFtZSI6IiIsInNwZWVkIjo5LCJjcmVhdGlvbkRhdGUiOjE2NjY5MDgwMTYsInR5cGUiOiJwaXhlbCIsImFuaW1hdGlvbiI6eyJkYXRhIjpbMzEsMjEsMTcsMCwzMCwxLDMwLDAsMjEsMTcsMCwzMCwxLDMwLDAsOCwxNywwLDMwLDEsMzAsMCw4LDMxLDAsMzAsMSwzMCwwLDgsMzEsMCwzMCwxLDMwLDAsOCwzMSwwLDgsMSwzMCwwLDgsMzEsMCw4LDMxLDMwLDAsOCwzMSwwLDgsMzEsMCwwLDgsMzEsMCw4LDMxLDAsMjksOCwzMSwwLDgsMzEsMCwyOSwyMSwzMSwwLDgsMzEsMCwyOSwyMSwxOCwwLDgsMzEsMCwyOSwyMSwxOCwwLDgsMzEsMCwyOSwyMSwxOCwwLDE0LDMxLDAsMjksMjEsMTgsMCwxNCw4MSwwLDI5LDIxLDE4LDAsMTQsODEsODEsMjksMjEsMTgsMCwxNCw4MSw4MSw3OCwyMSwxOCwwLDE0LDgxLDgxLDc4LDY0LDE4LDAsMTQsODEsODEsNzgsNjQsODAsMCw3OCw4MSw4MSw3OCw2NCw4MCw4OCw3OCw4MSw4MSw3OCw2NCw4MCw4OCw4MCw4MSw4MSw3OCw2NCw4MCw4OCw4MCwyMDgsODEsNzgsNjQsODAsODgsODAsMjA4LDgwLDc4LDY0LDgwLDg4LDgwLDIwOCw4MCwwLDMyLDQ4LDU2LDQ4LDQ4LDQ4LDExMiwzMiwxNiwyNCwxNiwxNiwxNiwxNiw0OCwxNiwxMiw4LDgsOCw4LDgsOCwyNCw4LDgsOCwwLDAsOCw4LDgsOCw4LDAsMCwwLDAsOCw4LDgsMCwwLDAsMCwwLDAsOCwwLDAsMCwwLDAsMCwwLDBdLCJjdXJyZW50RnJhbWUiOjI4LCJsZW5ndGgiOjI5LCJmcmFtZXMiOjI5fSwibW9kaWZpZWRBdCI6IjIwMjItMTAtMjdUMjI6MTY6NDQuNzI2WiJ9
-# 
-# 
-# editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiNTM5MTc5ZWUtNGFkNi00MDE0LTllMjAtNmFlYTRlYTEwOWZlIiwibmFtZSI6IiIsInNwZWVkIjo5LCJjcmVhdGlvbkRhdGUiOjE2NjY5MDgwMTYsInR5cGUiOiJwaXhlbCIsImFuaW1hdGlvbiI6eyJkYXRhIjpbMzEsMjEsMTcsMCwzMCwxLDMwLDAsMjEsMTcsMCwzMCwxLDMwLDAsOCwxNywwLDMwLDEsMzAsMCw4LDMxLDAsMzAsMSwzMCwwLDgsMzEsMCwzMCwxLDMwLDAsOCwzMSwwLDgsMSwzMCwwLDgsMzEsMCw4LDMxLDMwLDAsOCwzMSwwLDgsMzEsMCwwLDgsMzEsMCw4LDMxLDAsMjksOCwzMSwwLDgsMzEsMCwyOSwyMSwzMSwwLDgsMzEsMCwyOSwyMSwxOCwwLDgsMzEsMCwyOSwyMSwxOCwwLDgsMzEsMCwyOSwyMSwxOCwwLDE0LDMxLDAsMjksMjEsMTgsMCwxNCw4MSwwLDI5LDIxLDE4LDAsMTQsODEsODEsMjksMjEsMTgsMCwxNCw4MSw4MSw3OCwyMSwxOCwwLDE0LDgxLDgxLDc4LDY0LDE4LDAsMTQsODEsODEsNzgsNjQsODAsMCw3OCw4MSw4MSw3OCw2NCw4MCw4OCw3OCw4MSw4MSw3OCw2NCw4MCw4OCw4MCw4MSw4MSw3OCw2NCw4MCw4OCw4MCwyMDgsODEsNzgsNjQsODAsODgsODAsMjA4LDgwLDc4LDY0LDgwLDg4LDgwLDIwOCw4MCwwLDMyLDQ4LDU2LDQ4LDQ4LDQ4LDExMiwzMiwxNiwyNCwxNiwxNiwxNiwxNiw0OCwxNiwxMiw4LDgsOCw4LDgsOCwyNCw4LDgsOCwwLDAsOCw4LDgsOCw4LDAsMCwwLDAsOCw4LDgsMCwwLDAsMCwwLDAsOCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDgsMCwwLDAsMCwwLDAsMTIsMTIsMCwxMiwwLDAsMCwzMCwzMCwwLDMwLDAsMCwwLDMxLDMxLDAsMCwzMSwwLDAsMzEsMzEsMjEsMCwzMCwzMSwwXSwiY3VycmVudEZyYW1lIjozMywibGVuZ3RoIjozNCwiZnJhbWVzIjozNH0sIm1vZGlmaWVkQXQiOiIyMDIyLTEwLTI3VDIyOjIyOjU3LjE2NloifQ%3D%3D
-# {"delay":0,"repeat":0,"direction":0,"id":"539179ee-4ad6-4014-9e20-6aea4ea109fe","name":"","speed":9,"creationDate":1666908016,"type":"pixel","animation":{"data":[31,21,17,0,30,1,30,0,21,17,0,30,1,30,0,8,17,0,30,1,30,0,8,31,0,30,1,30,0,8,31,0,30,1,30,0,8,31,0,8,1,30,0,8,31,0,8,31,30,0,8,31,0,8,31,0,0,8,31,0,8,31,0,29,8,31,0,8,31,0,29,21,31,0,8,31,0,29,21,18,0,8,31,0,29,21,18,0,8,31,0,29,21,18,0,14,31,0,29,21,18,0,14,81,0,29,21,18,0,14,81,81,29,21,18,0,14,81,81,78,21,18,0,14,81,81,78,64,18,0,14,81,81,78,64,80,0,78,81,81,78,64,80,88,78,81,81,78,64,80,88,80,81,81,78,64,80,88,80,208,81,78,64,80,88,80,208,80,78,64,80,88,80,208,80,0,32,48,56,48,48,48,112,32,16,24,16,16,16,16,48,16,12,8,8,8,8,8,8,24,8,8,8,0,0,8,8,8,8,8,0,0,0,0,8,8,8,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,12,12,0,12,0,0,0,30,30,0,30,0,0,0,31,31,0,0,31,0,0,31,31,21,0,30,31,0],"currentFrame":33,"length":34,"frames":34},"modifiedAt":"2022-10-27T22:22:57.166Z"}
-# editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiMGU2MzQ2MWQtNTVhZC00MzM3LWIwYmUtZjdlMDYzYThmM2FjIiwibmFtZSI6IiIsInNwZWVkIjoxMywiY3JlYXRpb25EYXRlIjoxNjY2OTA5NjQyLCJ0eXBlIjoidGV4dCIsInRleHQiOiIgIEpldHp0IGthbm5zdCBkdSBuaWNodCBtZWhyIGJlaGF1cHRlbiwgZGFzcyBkdSBuaWNodCBsb2V0ZW4ga2FubnN0IiwiYW5pbWF0aW9uIjp7ImRhdGEiOlswLDAsMCwwLDAsMCwwLDBdLCJjdXJyZW50RnJhbWUiOjAsImZyYW1lcyI6MSwibGVuZ3RoIjoxfSwibW9kaWZpZWRBdCI6IjIwMjItMTAtMjdUMjI6Mjc6MjQuMzkwWiJ9
-# {"delay":0,"repeat":0,"direction":0,"id":"0e63461d-55ad-4337-b0be-f7e063a8f3ac","name":"","speed":13,"creationDate":1666909642,"type":"text","text":"  Jetzt kannst du nicht mehr behaupten, dass du nicht loeten kannst","animation":{"data":[0,0,0,0,0,0,0,0],"currentFrame":0,"frames":1,"length":1},"modifiedAt":"2022-10-27T22:27:24.390Z"}
-# editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiMTQ5MDgwNzYtODNjNy00MmIwLTliOGYtZWU1YjY1ZTI4YWY3IiwibmFtZSI6IiIsInNwZWVkIjo1LCJjcmVhdGlvbkRhdGUiOjE2NjY5MDk2NDksInR5cGUiOiJwaXhlbCIsImFuaW1hdGlvbiI6eyJkYXRhIjpbMCwxOTYsMTk0LDE4LDE4LDE5NCwxOTYsMCwwLDY4LDY2LDE4LDE4LDE5NCwxOTYsMF0sImN1cnJlbnRGcmFtZSI6MCwibGVuZ3RoIjoyLCJmcmFtZXMiOjJ9LCJtb2RpZmllZEF0IjoiMjAyMi0xMC0yN1QyMjozMDo1NS4zMzdaIn0%3D
-# {"delay":0,"repeat":0,"direction":0,"id":"14908076-83c7-42b0-9b8f-ee5b65e28af7","name":"","speed":5,"creationDate":1666909649,"type":"pixel","animation":{"data":[0,196,194,18,18,194,196,0,0,68,66,18,18,194,196,0],"currentFrame":0,"length":2,"frames":2},"modifiedAt":"2022-10-27T22:30:55.337Z"}
-# 
-# 
-# {"delay":0,"repeat":0,"direction":0,"id":"539179ee-4ad6-4014-9e20-6aea4ea109fe","name":"","speed":9,"creationDate":1666908016,"type":"pixel","animation":{"data":[0,0,0,0,0,8,0,0,0,0,0,0,12,12,0,12,0,0,0,30,30,0,30,0,0,0,31,31,0,0,31,0,0,31,31,21,0,30,31,0,31,21,17,0,30,1,30,0,21,17,0,30,1,30,0,8,17,0,30,1,30,0,8,31,0,30,1,30,0,8,31,0,30,1,30,0,8,31,0,8,1,30,0,8,31,0,8,31,30,0,8,31,0,8,31,0,0,8,31,0,8,31,0,29,8,31,0,8,31,0,29,21,31,0,8,31,0,29,21,18,0,8,31,0,29,21,18,0,8,31,0,29,21,18,0,14,31,0,29,21,18,0,14,81,0,29,21,18,0,14,81,81,29,21,18,0,14,81,81,78,21,18,0,14,81,81,78,64,18,0,14,81,81,78,64,80,0,78,81,81,78,64,80,88,78,81,81,78,64,80,88,80,81,81,78,64,80,88,80,208,81,78,64,80,88,80,208,80,78,64,80,88,80,208,80,0,32,48,56,48,48,48,112,32,16,24,16,16,16,16,48,16,12,8,8,8,8,8,8,24,8,8,8,0,0,8,8,8,8,8,0,0,0,0,8,8,8,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0],"currentFrame":33,"length":34,"frames":34},"modifiedAt":"2022-10-27T22:22:57.166Z"}
-# editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiNTM5MTc5ZWUtNGFkNi00MDE0LTllMjAtNmFlYTRlYTEwOWZlIiwibmFtZSI6IiIsInNwZWVkIjo5LCJjcmVhdGlvbkRhdGUiOjE2NjY5MDgwMTYsInR5cGUiOiJwaXhlbCIsImFuaW1hdGlvbiI6eyJkYXRhIjpbMCwwLDAsMCwwLDgsMCwwLDAsMCwwLDAsMTIsMTIsMCwxMiwwLDAsMCwzMCwzMCwwLDMwLDAsMCwwLDMxLDMxLDAsMCwzMSwwLDAsMzEsMzEsMjEsMCwzMCwzMSwwLDMxLDIxLDE3LDAsMzAsMSwzMCwwLDIxLDE3LDAsMzAsMSwzMCwwLDgsMTcsMCwzMCwxLDMwLDAsOCwzMSwwLDMwLDEsMzAsMCw4LDMxLDAsMzAsMSwzMCwwLDgsMzEsMCw4LDEsMzAsMCw4LDMxLDAsOCwzMSwzMCwwLDgsMzEsMCw4LDMxLDAsMCw4LDMxLDAsOCwzMSwwLDI5LDgsMzEsMCw4LDMxLDAsMjksMjEsMzEsMCw4LDMxLDAsMjksMjEsMTgsMCw4LDMxLDAsMjksMjEsMTgsMCw4LDMxLDAsMjksMjEsMTgsMCwxNCwzMSwwLDI5LDIxLDE4LDAsMTQsODEsMCwyOSwyMSwxOCwwLDE0LDgxLDgxLDI5LDIxLDE4LDAsMTQsODEsODEsNzgsMjEsMTgsMCwxNCw4MSw4MSw3OCw2NCwxOCwwLDE0LDgxLDgxLDc4LDY0LDgwLDAsNzgsODEsODEsNzgsNjQsODAsODgsNzgsODEsODEsNzgsNjQsODAsODgsODAsODEsODEsNzgsNjQsODAsODgsODAsMjA4LDgxLDc4LDY0LDgwLDg4LDgwLDIwOCw4MCw3OCw2NCw4MCw4OCw4MCwyMDgsODAsMCwzMiw0OCw1Niw0OCw0OCw0OCwxMTIsMzIsMTYsMjQsMTYsMTYsMTYsMTYsNDgsMTYsMTIsOCw4LDgsOCw4LDgsMjQsOCw4LDgsMCwwLDgsOCw4LDgsOCwwLDAsMCwwLDgsOCw4LDAsMCwwLDAsMCwwLDgsMCwwLDAsMCwwLDAsMCwwXSwiY3VycmVudEZyYW1lIjozMywibGVuZ3RoIjozNCwiZnJhbWVzIjozNH0sIm1vZGlmaWVkQXQiOiIyMDIyLTEwLTI3VDIyOjIyOjU3LjE2NloifQo%3D
-# 
-# 
-# https://github.com/blinkenrocket/firmware/blob/master/src/storage.cc
-# i2c_read(uint8_t addrhi, uint8_t addrlo, uint8_t len, uint8_t *data)
-# load(uint8_t idx, uint8_t *data)
-#   - i2c_read(0, 1 + idx, 1, &page_offset);
-#   - i2c_read(1 + (page_offset / 8), (page_offset % 8) * 32, 132, data);
-#   -->
-#   - page_offset = eeprom[1+idx]
-#   - page_address = 256 + 32*page_offset
-#   - page = eeprom[page_address .. page_address+132-1]
-# loadChunk(uint8_t chunk, uint8_t *data)
-#   - uint8_t this_page_offset = page_offset + (4 * chunk);
-#   - i2c_read(1 + (this_page_offset / 8), (this_page_offset % 8) * 32 + 4, 128, data);
-#   -->
-#   - this_page_offset = page_offset + (4 * chunk)
-#   - address = 256 + 32*this_page_offset + 4   # +4 to skip header
-#   - data = eeprom[address .. address+128-1]
-# eeprom[0] = num_anims
-# 
-# https://github.com/blinkenrocket/firmware/blob/master/src/display.h
-# 
-# https://eblot.github.io/pyftdi/api/i2c.html
-# - ADBUS0: SCL, with pullup
-# - ADBUS1, ADBUS2: both connected to SDA, with pullup
-
 import re
 import base64
 import json
@@ -134,8 +92,6 @@ class Animation(object):
         type_and_len, header1, header2 = struct.unpack_from(">HBB", data)
         payload = data[4:4+(type_and_len & 0xfff)]
         if type_and_len >> 12 == 1:
-            print("DEBUG: %r" % payload)
-            print("DEBUG: %r" % bytes(payload))
             return TextAnimation.from_bytes(header1, header2, bytes(payload))
         elif type_and_len >> 12 == 2:
             return PixelAnimation.from_bytes(header1, header2, bytes(payload))
@@ -311,89 +267,3 @@ class I2cEEPROM(object):
             self.ftdi.write(self.eeprom_address, bytes([(start+i)>>8, (start+i)&0xff]) + data[i:i+page_size])
             i += page_size
 
-a = Animation.from_url("editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsIm5hbWUiOiIiLCJzcGVlZCI6OSwidHlwZSI6InBpeGVsIiwiYW5pbWF0aW9uIjp7ImRhdGEiOlswLDAsMCwwLDAsOCwwLDAsMCwwLDAsMCwxMiwxMiwwLDEyLDAsMCwwLDMwLDMwLDAsMzAsMCwwLDAsMzEsMzEsMCwwLDMxLDAsMCwzMSwzMSwyMSwwLDMwLDMxLDAsMzEsMjEsMTcsMCwzMCwxLDMwLDAsMjEsMTcsMCwzMCwxLDMwLDAsOCwxNywwLDMwLDEsMzAsMCw4LDMxLDAsMzAsMSwzMCwwLDgsMzEsMCwzMCwxLDMwLDAsOCwzMSwwLDgsMSwzMCwwLDgsMzEsMCw4LDMxLDMwLDAsOCwzMSwwLDgsMzEsMCwwLDgsMzEsMCw4LDMxLDAsMjksOCwzMSwwLDgsMzEsMCwyOSwyMSwzMSwwLDgsMzEsMCwyOSwyMSwxOCwwLDgsMzEsMCwyOSwyMSwxOCwwLDgsMzEsMCwyOSwyMSwxOCwwLDE0LDMxLDAsMjksMjEsMTgsMCwxNCw4MSwwLDI5LDIxLDE4LDAsMTQsODEsODEsMjksMjEsMTgsMCwxNCw4MSw4MSw3OCwyMSwxOCwwLDE0LDgxLDgxLDc4LDY0LDE4LDAsMTQsODEsODEsNzgsNjQsODAsMCwxNCw4MSw4MSw3OCw2NCw4MCw4OCwxNCw4MSw4MSw3OCw2NCw4MCw4OCw4MCw4MSw4MSw3OCw2NCw4MCw4OCw4MCwyMDgsODEsNzgsNjQsODAsODgsODAsMjA4LDgwLDc4LDY0LDgwLDg4LDgwLDIwOCw4MCwwLDMyLDQ4LDU2LDQ4LDQ4LDQ4LDExMiwzMiwxNiwyNCwxNiwxNiwxNiwxNiw0OCwxNiwxMiw4LDgsOCw4LDgsOCwyNCw4LDgsOCwwLDAsOCw4LDgsOCw4LDAsMCwwLDAsOCw4LDgsMCwwLDAsMCwwLDAsOCwwLDAsMCwwLDAsMCwwLDBdLCJjdXJyZW50RnJhbWUiOjIzLCJsZW5ndGgiOjM0LCJmcmFtZXMiOjM0fSwiaWQiOiJlODFjMTRlNi00NjllLTRkOTctYmVjZi1hMDA5YzE5NGI1YTciLCJtb2RpZmllZEF0IjoiMjAyMi0xMC0yOFQwMDoyODoxNS45MzlaIn0%3D")
-a.repeat = 1
-print(repr(a))
-
-b = Animation.from_url("editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiMGU2MzQ2MWQtNTVhZC00MzM3LWIwYmUtZjdlMDYzYThmM2FjIiwibmFtZSI6IiIsInNwZWVkIjoxMywiY3JlYXRpb25EYXRlIjoxNjY2OTA5NjQyLCJ0eXBlIjoidGV4dCIsInRleHQiOiIgIEpldHp0IGthbm5zdCBkdSBuaWNodCBtZWhyIGJlaGF1cHRlbiwgZGFzcyBkdSBuaWNodCBsb2V0ZW4ga2FubnN0IiwiYW5pbWF0aW9uIjp7ImRhdGEiOlswLDAsMCwwLDAsMCwwLDBdLCJjdXJyZW50RnJhbWUiOjAsImZyYW1lcyI6MSwibGVuZ3RoIjoxfSwibW9kaWZpZWRBdCI6IjIwMjItMTAtMjdUMjI6Mjc6MjQuMzkwWiJ9")
-b.repeat = 1
-print(repr(b))
-
-c = Animation.from_url("editor.blinkenrocket.de/?s=eyJkZWxheSI6MS41LCJyZXBlYXQiOjAsImRpcmVjdGlvbiI6MCwiaWQiOiIxNDkwODA3Ni04M2M3LTQyYjAtOWI4Zi1lZTViNjVlMjhhZjciLCJuYW1lIjoiIiwic3BlZWQiOjUsImNyZWF0aW9uRGF0ZSI6MTY2NjkwOTY0OSwidHlwZSI6InBpeGVsIiwiYW5pbWF0aW9uIjp7ImRhdGEiOlswLDE5NiwxOTQsMTgsMTgsMTk0LDE5NiwwLDAsNjgsNjYsMTgsMTgsMTk0LDE5NiwwLDAsMTk2LDE5NCwxOCwxOCwxOTQsMTk2LDBdLCJjdXJyZW50RnJhbWUiOjIsImxlbmd0aCI6MywiZnJhbWVzIjozfSwibW9kaWZpZWRBdCI6IjIwMjItMTAtMjhUMDA6NDQ6MTEuMDQ0WiJ9")
-c.repeat = 1
-c = PixelAnimation(
-	# 0
-	" XX  XX " + "\n" +
-	" XX  XX " + "\n" +
-	"        " + "\n" +
-	"   XX   " + "\n" +
-	"        " + "\n" +
-	" X    X " + "\n" +
-	"  XXXX  " + "\n" +
-	"        " + "\n",
-	# 1
-	"     XX " + "\n" +
-	" XX  XX " + "\n" +
-	"        " + "\n" +
-	"   XX   " + "\n" +
-	"        " + "\n" +
-	" X    X " + "\n" +
-	"  XXXX  " + "\n" +
-	"        " + "\n",
-	# 2
-	" XX  XX " + "\n" +
-	" XX  XX " + "\n" +
-	"        " + "\n" +
-	"   XX   " + "\n" +
-	"        " + "\n" +
-	" X    X " + "\n" +
-	"  XXXX  " + "\n" +
-	"        " + "\n",
-	speed=5, delay=3, repeat=1)
-print(repr(c))
-
-#print(a.to_url())
-#a.play()
-
-eeprom_bytes = Animation.to_eeprom(a, b, c)
-print(repr(eeprom_bytes))
-abc2 = Animation.from_eeprom(eeprom_bytes)
-print(abc2)
-if repr([a, b, c]) != repr(abc2):
-    print("not equal!")
-    print("%r\n\n!=\n\n%r" % (repr([a, b, c]), repr(abc2)))
-
-# https://github.com/blinkenrocket/firmware/blob/master/src/static_patterns.h
-shutdownPattern = Animation.from_bytes(bytes([
-	0x20, 0x40,
-	0x0e, 0x0f,
-	0xff, 0x81, 0x81, 0x81, 0x81, 0x81, 0x81, 0xff,
-	0x7e, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x7e,
-	0x3c, 0x24, 0x24, 0x24, 0x24, 0x24, 0x24, 0x3c,
-	0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-	0x00, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x00,
-	0x00, 0x00, 0x18, 0x18, 0x18, 0x18, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x18, 0x18, 0x00, 0x00, 0x00,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-]))
-#print(shutdownPattern)
-
-turnonPattern = Animation.from_bytes(bytes([
-    0x20, 0x40,
-    0x0e, 0x0f,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,        
-    0x00, 0x00, 0x00, 0x18, 0x18, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x18, 0x18, 0x18, 0x18, 0x00, 0x00,
-    0x00, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x00,
-    0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-    0x3c, 0x24, 0x24, 0x24, 0x24, 0x24, 0x24, 0x3c,
-    0x7e, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x7e,
-    0xff, 0x81, 0x81, 0x81, 0x81, 0x81, 0x81, 0xff
-]))
-#print(turnonPattern)
-
-if True:
-    print(eeprom_bytes)
-    prom = I2cEEPROM("ftdi://ftdi:232h/1")
-    print(prom.read_eeprom())
-    prom.write_eeprom(eeprom_bytes)
