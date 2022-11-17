@@ -316,11 +316,11 @@ a.repeat = 1
 print(repr(a))
 
 b = Animation.from_url("editor.blinkenrocket.de/?s=eyJkZWxheSI6MCwicmVwZWF0IjowLCJkaXJlY3Rpb24iOjAsImlkIjoiMGU2MzQ2MWQtNTVhZC00MzM3LWIwYmUtZjdlMDYzYThmM2FjIiwibmFtZSI6IiIsInNwZWVkIjoxMywiY3JlYXRpb25EYXRlIjoxNjY2OTA5NjQyLCJ0eXBlIjoidGV4dCIsInRleHQiOiIgIEpldHp0IGthbm5zdCBkdSBuaWNodCBtZWhyIGJlaGF1cHRlbiwgZGFzcyBkdSBuaWNodCBsb2V0ZW4ga2FubnN0IiwiYW5pbWF0aW9uIjp7ImRhdGEiOlswLDAsMCwwLDAsMCwwLDBdLCJjdXJyZW50RnJhbWUiOjAsImZyYW1lcyI6MSwibGVuZ3RoIjoxfSwibW9kaWZpZWRBdCI6IjIwMjItMTAtMjdUMjI6Mjc6MjQuMzkwWiJ9")
-a.repeat = 1
+b.repeat = 1
 print(repr(b))
 
 c = Animation.from_url("editor.blinkenrocket.de/?s=eyJkZWxheSI6MS41LCJyZXBlYXQiOjAsImRpcmVjdGlvbiI6MCwiaWQiOiIxNDkwODA3Ni04M2M3LTQyYjAtOWI4Zi1lZTViNjVlMjhhZjciLCJuYW1lIjoiIiwic3BlZWQiOjUsImNyZWF0aW9uRGF0ZSI6MTY2NjkwOTY0OSwidHlwZSI6InBpeGVsIiwiYW5pbWF0aW9uIjp7ImRhdGEiOlswLDE5NiwxOTQsMTgsMTgsMTk0LDE5NiwwLDAsNjgsNjYsMTgsMTgsMTk0LDE5NiwwLDAsMTk2LDE5NCwxOCwxOCwxOTQsMTk2LDBdLCJjdXJyZW50RnJhbWUiOjIsImxlbmd0aCI6MywiZnJhbWVzIjozfSwibW9kaWZpZWRBdCI6IjIwMjItMTAtMjhUMDA6NDQ6MTEuMDQ0WiJ9")
-a.repeat = 1
+c.repeat = 1
 c = PixelAnimation(
 	# 0
 	" XX  XX " + "\n" +
@@ -349,7 +349,7 @@ c = PixelAnimation(
 	" X    X " + "\n" +
 	"  XXXX  " + "\n" +
 	"        " + "\n",
-	speed=5, delay=3)
+	speed=5, delay=3, repeat=1)
 print(repr(c))
 
 #print(a.to_url())
