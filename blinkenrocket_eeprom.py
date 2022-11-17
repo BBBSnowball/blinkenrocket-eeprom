@@ -263,7 +263,7 @@ class PixelAnimation(Animation):
 
                 # Delay after the animation is set to 244. This is supposed to be 0.5 sec.
                 # Speed is 250 - 16*speed.
-                time.sleep(244/0.5 * (250-16*self.speed))
+                time.sleep(0.5/244 * (250-16*self.speed))
 
             time.sleep(0.5*self.delay)
 
